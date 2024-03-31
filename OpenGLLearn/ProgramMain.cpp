@@ -105,12 +105,17 @@ int main()
     const GLuint objectShaderSpecular = objectShader.GetUniformLocationFromProgram("ObjectMaterial.SpecularMap");
     const GLuint objectShaderLightPos = objectShader.GetUniformLocationFromProgram("LightPos");
     const GLuint objectShaderViewLocation = objectShader.GetUniformLocationFromProgram("ViewLocation");
+    const GLuint objectShaderLightambience = objectShader.GetUniformLocationFromProgram("LightProperties.ambience");
+    const GLuint objectShaderLightshine = objectShader.GetUniformLocationFromProgram("LightProperties.shine");
+
     objectShader.UseProgram();    
     glUniformMatrix4fv(objectShaderProjectionMatrix, 1, GL_FALSE, glm::value_ptr(ProjectionMatrix));
     glUniform3f(objectShaderViewLocation, cameraPos.x, cameraPos.y, cameraPos.z);
     glUniform3f(objectShaderLightPos, lightPosition.x, lightPosition.y, lightPosition.z);
     glUniform1i(objectShaderDiffuse, 0);
     glUniform1i(objectShaderSpecular, 1);
+    glUniform1f(objectShaderLightambience, 0.2f);
+    glUniform1f(objectShaderLightshine, 64);
        
     Shader lightSourceShader{ "ShaderFiles/VertexFile.txt",
         "ShaderFiles/LightFragmentFile.txt", "Light Source Vertex", "Light Source Fragment"};

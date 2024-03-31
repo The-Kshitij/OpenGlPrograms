@@ -6,11 +6,18 @@ struct Material
 	sampler2D SpecularMap;
 };
 
+struct Light
+{
+	float ambience;
+	float shine;
+};
+
 in vec2 TexCoord;
 in vec3 Normal;
 in vec3 FragmentPos;
 
 uniform Material ObjectMaterial;
+uniform Light LightProperties;
 uniform vec3 LightPos;
 uniform vec3 ViewLocation;
 
@@ -18,7 +25,7 @@ out vec4 color;
 
 void main()
 {		
-	vec3 ambience = 0.2f * vec3(texture(ObjectMaterial.DiffuseMap, TexCoord));
+	vec3 ambience = LightProperties.ambience * vec3(texture(ObjectMaterial.DiffuseMap, TexCoord));
 
 	vec3 lightDir = normalize(LightPos - FragmentPos);
 	float diff = max(dot(Normal, lightDir), 0);
@@ -26,7 +33,7 @@ void main()
 
 	vec3 reflectedDir = reflect(-lightDir, Normal);
 	vec3 viewDir = normalize(ViewLocation - FragmentPos);
-	float spec = pow(max(dot(viewDir, reflectedDir), 0), 256);
+	float spec = pow(max(dot(viewDir, reflectedDir), 0), LightProperties.shine);
 	vec3 specular = spec * vec3(texture(ObjectMaterial.SpecularMap, TexCoord));
 
 	color = vec4(ambience + diffuse + specular, 1.0f);
