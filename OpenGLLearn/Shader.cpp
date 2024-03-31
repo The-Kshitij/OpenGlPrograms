@@ -6,14 +6,14 @@
 
 #define MaxInfoLength 512
 
-Shader::Shader(const GLchar* vertexShaderFilePath, const GLchar* fragmentShaderFilePath)
+Shader::Shader(const GLchar* vertexShaderFilePath, const GLchar* fragmentShaderFilePath, const GLchar* VertexShaderName, const GLchar* FragmentShaderName)
 {	
 	if (CreateVertexShader(vertexShaderFilePath) == GL_TRUE)
 	{
-		std::cout<<"Vertex shader created"<<std::endl;		
+		std::cout<< VertexShaderName <<" created"<<std::endl;		
 		if (CreateFragmentShader(fragmentShaderFilePath) == GL_TRUE)
 		{
-			std::cout << "Fragment shader created" << std::endl;
+			std::cout << FragmentShaderName <<" created" << std::endl;
 			if (CreateProgram() == GL_TRUE)
 			{
 				bShaderFinalResult = GL_TRUE;

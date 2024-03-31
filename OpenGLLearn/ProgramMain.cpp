@@ -97,7 +97,7 @@ int main()
     LightSourceModelMatrix = glm::scale(LightSourceModelMatrix, glm::vec3(0.2f, 0.2f, 0.2f));
 
     Shader objectShader{ "ShaderFiles/VertexFile.txt",
-        "ShaderFiles/ModelFragmentFile.txt" };
+        "ShaderFiles/ModelFragmentFile.txt", "Model Shader Vertex", "Model Shader Fragment" };
     const GLuint objectShaderModelMatrix = objectShader.GetUniformLocationFromProgram("ModelMatrix");
     const GLuint objectShaderViewMatrix = objectShader.GetUniformLocationFromProgram("ViewMatrix");
     const GLuint objectShaderProjectionMatrix = objectShader.GetUniformLocationFromProgram("ProjectionMatrix");
@@ -113,7 +113,7 @@ int main()
     glUniform1i(objectShaderSpecular, 1);
        
     Shader lightSourceShader{ "ShaderFiles/VertexFile.txt",
-        "ShaderFiles/LightFragmentFile.txt" };
+        "ShaderFiles/LightFragmentFile.txt", "Light Source Vertex", "Light Source Fragment"};
     const GLuint lightSourceShaderModelMatrix = lightSourceShader.GetUniformLocationFromProgram("ModelMatrix");
     const GLuint lightSourceShaderViewMatrix = lightSourceShader.GetUniformLocationFromProgram("ViewMatrix");
     const GLuint lightSourceShaderProjectionMatrix = lightSourceShader.GetUniformLocationFromProgram("ProjectionMatrix");

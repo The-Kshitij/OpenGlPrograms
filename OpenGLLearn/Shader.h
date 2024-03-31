@@ -8,7 +8,7 @@
 class Shader
 {
 public:	
-	Shader(const GLchar* vertexShaderFilePath, const GLchar* fragmentShaderFilePath);
+	Shader(const GLchar* vertexShaderFilePath, const GLchar* fragmentShaderFilePath, const GLchar* VertexShaderName, const GLchar* FragmentShaderName);
 	const GLboolean UseProgram();
 	const GLuint GetUniformLocationFromProgram(const GLchar* uniformName);
 
